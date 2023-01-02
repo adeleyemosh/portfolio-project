@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.108.0">
-    <title>Moshood Adeleye Portfolio</title>
+    <title>Mosh's Blog</title>
 
     <!-- <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/"> -->
 
@@ -96,8 +96,8 @@
           <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ml-auto">
               <a class="nav-link" aria-current="page" href="https://www.linkedin.com/in/adeleyemosh/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-              <a class="nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-              <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+              <!-- <a class="nav-link" href="#">Resume</a> -->
+              <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
               <a class="nav-link" href="https://www.techwithmosh.com" target="_blank" rel="noopener noreferrer">Blogspot</a>
             </div>
           </div>
@@ -105,48 +105,24 @@
     </nav>
 </header>
 
-<main>
-
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Hi, I'm Moshood.</h1>
-        <p class="lead text-muted">My name is Moshood Adeleye, I love to make Django websites. It's the thrill of handling the requests that the people want!</p>
-        <p>
-          <a href="mailto:adeleyemosh@gmail.com" class="btn btn-primary my-2">Email Me</a>
-          <!-- <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
-        </p>
-        <img class="img-fluid" src="{% static 'mosh.jpg' %}" height="300" width="300" />
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
+<main role="main">
     <div class="container">
+        <h1 class="text-center pt-3">Welcome to Mosh's Blog</h1>
+        <br />
+        <br />
+        <h2>Latest Posts</h2>
+        <hr>
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        {% for job in jobs.all %}
-        <div class="col">
-          <div class="card shadow-sm">
-            <img class="bd-placeholder-img card-img-top" src="{{ job.image.url }}"></img>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <!-- <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small> -->
-              </div>
-            </div>     
-          </div>
-        </div>
-        {% endfor %}   
-      </div>
+        {% for blog in blogs.all %}
+        <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3> </a>
+        {{ blog.pub_date_small }}
+        <br />
+        <img class="img-fluid" src="{{ blog.image.url }}" height="200" width="200">
+        <br />
+        <p>{{ blog.summary }}</p>
+        {% endfor %}
 
     </div>
-  </div>
-
 </main>
 
 <footer class="text-muted py-5">
